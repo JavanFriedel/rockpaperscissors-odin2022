@@ -14,8 +14,34 @@ function playRound (playerSelection, computerSelection){
     } else if (playerSelect == 'paper'){
         return computerSelect == 'scissors' ? 'Computer Wins': computerSelect == 'rock' ? 'Player Wins' : 'Tie game'
     } else {
-        return computerSelect == 'rock' ? 'Computer Wins': computerSelect == 'paper' ? 'Computer Loses' : 'Tie game'
+        return computerSelect == 'rock' ? 'Computer Wins': computerSelect == 'paper' ? 'Player Wins' : 'Tie game'
     }
 }
 
-console.log(playRound('rock',computerPlay()))
+function game (numRounds) {
+    let playerWins = 0;
+    let computerWins = 0;
+
+    for (let i = 0; i < numRounds; i++){
+        let playerChoice = prompt('Rock, Paper or scissors');
+
+        let outcome = playRound(playerChoice, computerPlay());
+
+        if (outcome == 'Computer Wins'){
+            computerWins++;
+            console.log('Computer Wins. Current Wins' + computerWins)
+        } else if (outcome == 'Player Wins'){
+            playerWins++;
+            console.log('Player Wins. Current ' + playerWins)
+        } else {
+            numRounds++;
+            console.log('Tie Game!')
+        }
+        
+    }
+
+    return playerWins > computerWins ? 'Player Wins' : 'Player Wins'
+}
+
+let numGames = prompt('How many rounds would you like to play?')
+game(numGames)
