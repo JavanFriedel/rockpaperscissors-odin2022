@@ -42,6 +42,3 @@ function game (numRounds) {
 
     return playerWins > computerWins ? 'Player Wins' : 'Player Wins'
 }
-
-let numGames = prompt('How many rounds would you like to play?')
-game(numGames)
