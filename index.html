@@ -16,18 +16,39 @@
 
         <main>
             <div class="wrapper">
+
+                <!-- winner declaration here -->
+                <div class="winner-declare"></div>
+
+                <!-- Display Current score and game settings
+                    As in: 0 - 0, Player vs Computer -->
+                <div class="score"><span>0</span> - <span>0</span></div>
+
                 <div class="btn-row">
-                    <div class="button">Rock</div>
-                    <div class="button">Paper</div>
-                    <div class="button">Scissors</div>
-                </div>
-            
-                <div class="results-log">
-
-                </div>
-
+                    <div class="button">
+                        <img src="/images/rock.svg" alt="rock" class="icon">
+                        <p>Rock</p>
+                    </div>
+                    <div class="button">
+                        <img src="/images/paper.svg" alt="paper" class="icon">
+                        <p>Paper</p>
+                    </div>
+                    <div class="button">
+                        <img src="/images/scissors.svg" alt="scissors" class="icon">
+                        <p>Scissors</p>
+                    </div>
+                </div>            
+                
+                <!-- Allow user to play again, should only appear when game over -->
                 <div class="game-options">
-                    
+                    <p>Play Again</p>
+                    <!-- Allow user to slect length of game. Custom must be odd number -->
+                    <p>Best of options: 3, 5, 7, Custom: ___</p>
+                </div>
+                
+                <!-- Results log, added to in reverse order -->
+                <div class="results-log">
+                    <div class="log-item">Test one</div>
                 </div>
             </div>
         </main>

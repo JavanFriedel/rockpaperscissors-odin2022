@@ -25,6 +25,10 @@ header {
     
 }
 
+p {
+    text-align: center;
+}
+
 .wrapper {
     max-width: 1200px;
 }
@@ -36,8 +40,21 @@ header {
 }
 
 .button {
-    width: 250px;
-    height: 250px;
+    min-width: 300px;
+    min-height: 300px;
     border: 2px solid white;
-    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.icon {
+    max-width: 200px;
+    filter: invert(100%);
+}
+
+.results-log {
+    border: 2px solid white;
+    display: flex;
 }
