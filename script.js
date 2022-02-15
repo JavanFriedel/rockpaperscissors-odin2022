@@ -15,37 +15,81 @@ function playRound (playerSelection){
         return computerSelect == 'paper' ? 'Computer Wins': computerSelect == 'scissors' ? 'Player Wins' : 'Tie game'
     } else if (playerSelect == 'paper'){
         return computerSelect == 'scissors' ? 'Computer Wins': computerSelect == 'rock' ? 'Player Wins' : 'Tie game'
-    } else {
+    } else if (playerSelect == 'scissors') {
         return computerSelect == 'rock' ? 'Computer Wins': computerSelect == 'paper' ? 'Player Wins' : 'Tie game'
     }
 }
 
-let bestOf = 3
-let computerWins = 0
-let playerWins = 0
-
-const rockBtn = document.getElementById('rock')
-
-rockBtn.addEventListener('click', () => {
-    //play a round against computer with selection
-    let outcome = playRound('rock')
-    //log the outcome
-    console.log(outcome)
-
-    //update standing score
-    if (outcome == 'Computer Wins'){
+function testWinner (check) {
+    if (check == 'Computer Wins'){
         computerWins++
-    } else if (outcome == 'Player Wins'){
+        computerScore.innerText = computerWins;
+        computerScore.style.color = 'red';
+        playerScore.style.color = 'white';
+    } else if (check == 'Player Wins'){
         playerWins++
+        playerScore.innerText = playerWins
+        playerScore.style.color = 'green';
+        computerScore.style.color =  'white';
     }
 
     //check if game is over
     if (computerWins >= bestOf){
-        console.log('Computer Wins the Game')
+        createLog('Computer Wins the Game!')
     }else if (playerWins >= bestOf){
-        console.log('Player wins the game!')
+        createLog('Player wins the game!')
     }
+}
+
+function createLog (input) {
+    let newLog = document.createElement('div')
+    newLog.innerText = `${input}!`
+    newLog.classList.add('log-item')
+    log.insertBefore(newLog, log.firstChild);
+}
+
+//global variables for keeping track of wins
+let bestOf = 3
+let computerWins = 0
+let playerWins = 0
+
+//scoreboard elements
+const playerScore = document.getElementById('playerScore')
+const computerScore = document.getElementById('computerScore')
+
+// Logbook
+const log = document.getElementById('results-log')
+
+// Rock event listeneer assignment
+const rockBtn = document.getElementById('rock')
+rockBtn.addEventListener('click', () => {
+    //play a round against computer with selection
+    let outcome = playRound('rock')
+    createLog(outcome);
+    testWinner(outcome);
 })
+
+// paper event listener assignment
+const paperBtn = document.getElementById('paper')
+paperBtn.addEventListener('click', () => {
+    let outcome = playRound('paper')
+    createLog(outcome)
+    testWinner(outcome)
+})
+
+const scissorBtn = document.getElementById('scissors')
+scissorBtn.addEventListener('click', () => {
+    let outcome = playRound('scissors')
+    createLog(outcome)
+    testWinner(outcome)
+})
+
+//adds an event listener to each of the best of buttons
+document.querySelectorAll('.bestOf').forEach( e => {
+    e.addEventListener('click', b => {
+        bestOf = parseInt(b.target.innerText) / 2 + 0.5
+    })
+}) 
 
 // Event listeneers
 

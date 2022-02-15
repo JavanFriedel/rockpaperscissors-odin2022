@@ -58,3 +58,60 @@ p {
     border: 2px solid white;
     display: flex;
 }
+
+.score {
+    display: flex;
+    justify-content: center;
+    font-size: 70px;
+}
+
+.log-header {
+    background-color: grey;
+    text-align: center;
+    border: 1px solid white;
+    padding: 5px;
+}
+
+.log-item {
+    border: 1px solid white;
+    text-align: center;
+    padding: 5px;
+}
+
+.reset-game {
+    background-color: pink;
+    border: 1px solid white;
+    color: black;
+    border-radius: 10px;
+    width: 70px;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+}
+
+.game-options {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bestof-row {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 20px;
+    margin: 20px;
+}
+
+.bestOf {
+    font-size: 24px;
+    padding: 10px;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+}
+
+#bo5 {
+    background-color: blue;
+}

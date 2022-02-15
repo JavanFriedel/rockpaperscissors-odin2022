@@ -8,12 +8,7 @@
         <link rel="stylesheet" href="/styles.css" />
     </head>
     <body>
-        <header>
-            <div class="wrapper">
-                <h3>Rock Paper Scissors</h3>
-            </div>
-        </header>
-
+        
         <main>
             <div class="wrapper">
 
@@ -22,7 +17,7 @@
 
                 <!-- Display Current score and game settings
                     As in: 0 - 0, Player vs Computer -->
-                <div class="score"><span>0</span> - <span>0</span></div>
+                <div class="score"><span id="playerScore">0</span> - <span id="computerScore">0</span></div>
 
                 <div class="btn-row">
                     <div class="button" id="rock">
@@ -41,14 +36,20 @@
                 
                 <!-- Allow user to play again, should only appear when game over -->
                 <div class="game-options">
-                    <div class="start-game">Start Game</div>
+                    <div class="reset-game">Reset</div>
                     <!-- Allow user to slect length of game. Custom must be odd number -->
-                    <p>Best of options: 3, 5, 7, Custom: ___</p>
+                    <div>Best of:</div>
+                    <div class="bestof-row">
+                        <div class="bestOf" id="bo3">3</div>
+                        <div class="bestOf" id="bo5">5</div>
+                        <div class="bestOf" id="bo7">7</div>
+                    </div>
                 </div>
                 
                 <!-- Results log, added to in reverse order -->
-                <div class="results-log">
-                    <div class="log-item">Test one</div>
+                <div class="log-header">Game Log</div>
+                <div id="results-log">
+                
                 </div>
             </div>
         </main>
