@@ -1,4 +1,4 @@
-// Randomly assigns what the computer will play and returns the falue
+// Randomly assigns what the computer will play and returns the value
 function computerPlay (){
     let choice = Math.floor(Math.random()*100) % 3;    
     return choice == 0 ? 'rock': choice == 1 ? 'paper': 'scissors'
@@ -35,65 +35,142 @@ function testWinner (check) {
 
     //check if game is over
     if (computerWins >= bestOf){
+        gameOverStatus = true;
+        showReset();
         createLog('Computer Wins the Game!')
     }else if (playerWins >= bestOf){
+        gameOverStatus = true;
+        showReset();
         createLog('Player wins the game!')
     }
 }
 
+// a function for creating a new game log output
 function createLog (input) {
     let newLog = document.createElement('div')
     newLog.innerText = `${input}!`
     newLog.classList.add('log-item')
+
+    if (gameOverStatus) {
+        if(computerWins > playerWins){
+            newLog.style.cssText = 'color:red;'
+        }else {
+            newLog.style.cssText = 'color:green;'
+        }
+    }
+
     log.insertBefore(newLog, log.firstChild);
+}
+
+//resets the game after a game win
+function resetGame () {
+    computerWins = 0
+    playerWins = 0
+    playerScore.innerText = 0
+    resetBtn.style.display = "none";
+    computerScore.style.color =  'white';
+    playerScore.style.color =  'white';
+    computerScore.innerText = 0
+}
+
+function showReset () {
+    resetBtn.style.display = "flex";
 }
 
 //global variables for keeping track of wins
 let bestOf = 3
 let computerWins = 0
 let playerWins = 0
+let gameOverStatus = false;
 
 //scoreboard elements
 const playerScore = document.getElementById('playerScore')
 const computerScore = document.getElementById('computerScore')
 
-// Logbook
+// Log output box
 const log = document.getElementById('results-log')
 
-// Rock event listeneer assignment
+// Reset Button
+const resetBtn = document.querySelector('.reset-game')
+
+
+
+//  --- Rock, Paper, Scissors Event Listeners ---
+// Rock
 const rockBtn = document.getElementById('rock')
 rockBtn.addEventListener('click', () => {
-    //play a round against computer with selection
+    
+    if (gameOverStatus) {
+        resetGame()
+        gameOverStatus = false;
+        return
+    }
+
     let outcome = playRound('rock')
     createLog(outcome);
     testWinner(outcome);
 })
 
-// paper event listener assignment
+// Paper
 const paperBtn = document.getElementById('paper')
 paperBtn.addEventListener('click', () => {
+    
+    if (gameOverStatus) {
+        resetGame()
+        gameOverStatus = false;
+        return
+    }
+    
     let outcome = playRound('paper')
     createLog(outcome)
     testWinner(outcome)
 })
-
+// Scissors
 const scissorBtn = document.getElementById('scissors')
 scissorBtn.addEventListener('click', () => {
+    if (gameOverStatus) {
+        resetGame()
+        gameOverStatus = false;
+        return
+    }
     let outcome = playRound('scissors')
     createLog(outcome)
     testWinner(outcome)
 })
 
-//adds an event listener to each of the best of buttons
-document.querySelectorAll('.bestOf').forEach( e => {
-    e.addEventListener('click', b => {
-        bestOf = parseInt(b.target.innerText) / 2 + 0.5
-    })
-}) 
 
-// Event listeneers
+// ---- Best Of Button Event Listeners ----
+const bestOf3 = document.getElementById('bo3')
+const bestOf5 = document.getElementById('bo5')
+const bestOf7 = document.getElementById('bo7')
+
+bestOf3.addEventListener('click', () => {
+    bestOf = parseInt(bestOf3.innerText) / 2 + 0.5
+    bestOf3.classList.add('selected-bo')
+    bestOf5.classList.remove('selected-bo')
+    bestOf7.classList.remove('selected-bo')
+})
+
+bestOf5.addEventListener('click', () => {
+    bestOf = parseInt(bestOf5.innerText) / 2 + 0.5
+    bestOf5.classList.add('selected-bo')
+    bestOf3.classList.remove('selected-bo')
+    bestOf7.classList.remove('selected-bo')
+})
+
+bestOf7.addEventListener('click', () => {
+    bestOf = parseInt(bestOf7.innerText) / 2 + 0.5
+    bestOf7.classList.add('selected-bo')
+    bestOf3.classList.remove('selected-bo')
+    bestOf5.classList.remove('selected-bo')
+})
+
+// --- Reset Button Event Listener ---
+resetBtn.addEventListener('click', () => {
+    resetGame()
+    gameOverStatus = false;
+})
 
 
 // ! TO DO
-// - make a function to log outcomes for each round
-// - make a function to declare winner of rounds.
+// - Make it look pretty
